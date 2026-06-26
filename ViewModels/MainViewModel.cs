@@ -1,11 +1,11 @@
 namespace NotepadApp.ViewModels
 {
-    public class MainViewModel : BaseViewModel
+    public class MainViewModel : BaseViewModel, IMainViewModel
     {
         private string _documentText = "";
-        private string _filePath = "";
+        public string FilePath { get; set; }
         // tracks if file is currently being edited
-        private bool isDirty = false;
+        public bool isDirty  {get; set;}
         public string DocumentText
         {
             get => _documentText;
@@ -17,6 +17,23 @@ namespace NotepadApp.ViewModels
                     OnPropertyChanged();
                 }
             }
+        }
+
+        public void NewDocument()
+        {
+            // can be executed by itself no need to call file service
+        }
+        public void OpenDocument()
+        {
+            //calls file service
+        }
+        public void SaveDocument()
+        {
+            // calls file service
+        }
+        public void SaveDocumentAs()
+        {
+            // calls file service
         }
     }
 }
