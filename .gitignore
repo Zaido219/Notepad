@@ -1,0 +1,44 @@
+##   Visual Studio / .NET Core / WPF GitIgnore   ##
+###################################################
+
+# --- User-specific files ---
+*.rsuser
+*.suo
+*.user
+*.userfile
+*.userosscache
+*.sln.docstates
+
+# --- Build outputs ---
+# Prevents committing compiled binaries and build artifacts
+[Dd]ebug/
+[Dd]ebugPublic/
+[Rr]elease/
+x64/
+x86/
+bbin/
+bin/
+obj/
+
+# --- WPF / XAML Generated Files ---
+# Keeps automatically generated UI cache files out of your repo
+*.g.cs
+*.g.i.cs
+*.xaml.lbi
+*.baml
+
+# --- Visual Studio Cache & Tooling ---
+.vs/
+.vs-code/
+.idea/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln.targets
+
+# --- Operating System Files ---
+# Ignores local OS metadata caches
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+.DS_Store
