@@ -5,8 +5,34 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:NotepadApp.Views"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
-    <Grid>
+        Title="Notepad App" Height="450" Width="800">
+    
+    <DockPanel LastChildFill="True">
+        <Menu DockPanel.Dock="Top" Background="White">
+            <MenuItem Header="_File">
+                <MenuItem Header="_New" />
+                <MenuItem Header="_Open..." />
+                <MenuItem Header="_Save" />
+                <MenuItem Header="Save _As..." />
+                <Separator />
+                <MenuItem Header="E_xit" />
+            </MenuItem>
+        </Menu>
 
-    </Grid>
+        <StatusBar DockPanel.Dock="Bottom" Background="#F3F3F3">
+            <StatusBarItem>
+                <TextBlock Text="Ln 1, Col 1" Foreground="#555555" FontSize="11"/>
+            </StatusBarItem>
+        </StatusBar>
+
+        <TextBox AcceptsReturn="True" 
+                 AcceptsTab="True" 
+                 TextWrapping="Wrap" 
+                 VerticalScrollBarVisibility="Auto" 
+                 HorizontalScrollBarVisibility="Auto"
+                 BorderThickness="0"
+                 Padding="8"
+                 FontSize="14"
+                 FontFamily="Consolas"/>
+    </DockPanel>
 </Window>
