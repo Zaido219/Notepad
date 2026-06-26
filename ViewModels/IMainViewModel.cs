@@ -9,7 +9,7 @@ namespace NotepadApp.ViewModels
         // The path display contract
         string FilePath { get; set; }
         // The changed tracking contract
-        bool isDirty { get; set; }
+        bool IsDirty { get; set; }
         // the structural actions (Commands) that the top Menu items will bind to
         void NewDocument();
         void OpenDocument();

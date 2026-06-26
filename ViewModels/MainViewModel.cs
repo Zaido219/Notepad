@@ -48,6 +48,10 @@ namespace NotepadApp.ViewModels
         public void NewDocument()
         {
             // can be executed by itself no need to call file service
+            DocumentText = "";
+            FilePath = "";
+            IsDirty = false;
+
         }
         public void OpenDocument()
         {
