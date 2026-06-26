@@ -1,11 +1,13 @@
+using System.IO;
+
 namespace NotepadApp.ViewModels
 {
     public class MainViewModel : BaseViewModel, IMainViewModel
     {
         private string _documentText = "";
-        public string FilePath { get; set; }
+        public string _filePath { get; set; }
         // tracks if file is currently being edited
-        public bool isDirty  {get; set;}
+        public bool _isDirty  {get; set;}
         public string DocumentText
         {
             get => _documentText;
@@ -19,6 +21,30 @@ namespace NotepadApp.ViewModels
             }
         }
 
+        public string FilePath
+        {
+            get => _filePath;
+            set
+            {
+                if(_filePath != value)
+                {
+                    _filePath = value;
+                    OnPropertyChanged();
+                }
+            }
+        }
+        public bool IsDirty
+        {
+            get => _isDirty;
+            set
+            {
+                if(_isDirty != value)
+                {
+                    _isDirty = value;
+                    OnPropertyChanged();
+                }
+            }
+        }
         public void NewDocument()
         {
             // can be executed by itself no need to call file service
