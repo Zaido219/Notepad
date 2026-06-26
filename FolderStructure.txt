@@ -1,0 +1,19 @@
+📁 C:\Users\io\Softwares\Notepad\
+│
+├── 📁 Views/                 <-- PRESENTATION LAYER
+│   └── 📄 MainWindow.xaml       (Move the default MainWindow here)
+│
+├── 📁 ViewModels/            <-- APPLICATION LOGIC LAYER
+│   ├── 📄 MainViewModel.cs      (Manages UI state: text, paths, commands)
+│   └── 📄 BaseViewModel.cs      (Holds the INotifyPropertyChanged logic)
+│
+├── 📁 Services/              <-- SERVICE LAYER (Infrastructure)
+│   ├── 📄 IFileService.cs       (The contract/interface for file operations)
+│   └── 📄 FileService.cs        (The concrete worker handling disk I/O & exceptions)
+│
+├── 📁 Commands/              <-- INFRASTRUCTURE/UTILITIES
+│   └── 📄 RelayCommand.cs       (A reusable glue class to route UI clicks to ViewModel methods)
+│
+├── 📄 App.xaml               <-- Application Entry Point & Global Configurations
+├── 📄 App.xaml.cs            <-- Where we wire up (bootstrap) our View and ViewModel
+└── 📄 NotepadApp.csproj      <-- The .NET Project Configuration File

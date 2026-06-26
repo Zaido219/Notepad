@@ -13,7 +13,7 @@
     <DockPanel LastChildFill="True">
         <Menu Background="White" DockPanel.Dock="Top">
             <MenuItem Header="_File">
-                <MenuItem Header="_New" />
+                <MenuItem Header="_New" Click="NewMenu_Click"/>
                 <MenuItem Header="_Open..." />
                 <MenuItem Header="_Save" />
                 <MenuItem Header="Save _As..." />
@@ -32,6 +32,7 @@
         </StatusBar>
 
         <TextBox
+            Text="{Binding DocumentText, UpdateSourceTrigger=PropertyChanged}"
             Padding="8"
             AcceptsReturn="True"
             AcceptsTab="True"
