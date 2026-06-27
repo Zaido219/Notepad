@@ -1,6 +1,7 @@
 ﻿using System.Configuration;
 using System.Data;
 using System.Windows;
+using NotepadApp.Services;
 using NotepadApp.ViewModels;
 using NotepadApp.Views;
 
@@ -13,7 +14,8 @@ namespace NotepadApp
             base.OnStartup(e);
             // create the layers
             MainWindow window = new MainWindow();
-            IMainViewModel viewModel = new MainViewModel();
+            IFileService fileService = new FileService();
+            IMainViewModel viewModel = new MainViewModel(fileService);
             // hand the view model to the view
             window.DataContext = viewModel;
             // display the ui
