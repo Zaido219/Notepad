@@ -10,7 +10,7 @@ namespace NotepadApp.ViewModels
     {
         private readonly IFileService _fileService;
         private string _documentText = "";
-        public string _filePath { get; set; }
+        public string? _filePath { get; set; }
         // tracks if file is currently being edited
         public bool _isDirty { get; set; }
         public ICommand NewDocumentCommand { get; set; }
@@ -33,7 +33,7 @@ namespace NotepadApp.ViewModels
 
         public string FilePath
         {
-            get => _filePath;
+            get => _filePath ?? "";
             set
             {
                 if (_filePath != value)
@@ -88,7 +88,7 @@ namespace NotepadApp.ViewModels
             if (openFileDialog.ShowDialog() == true)
             {
                 // capture the selected path
-                string selectedPath = openFileDialog.FileName;
+                string selectedPath = openFileDialog.FileName ?? "";
                 // delegate the disk reading operation to the service layer
                 string fileContent = _fileService.LoadTextFromFile(selectedPath);
                 // update state
