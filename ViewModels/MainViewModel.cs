@@ -14,6 +14,7 @@ namespace NotepadApp.ViewModels
         // tracks if file is currently being edited
         public bool _isDirty { get; set; }
         public ICommand NewDocumentCommand { get; set; }
+        public ICommand OpenDocumentCommand {get; set;}
 
         public string DocumentText
         {
@@ -60,6 +61,7 @@ namespace NotepadApp.ViewModels
             NewDocumentCommand = new RelayCommand(_ => NewDocument(),
             _ => !string.IsNullOrEmpty(DocumentText)
             );
+            OpenDocumentCommand = new RelayCommand(_ => OpenDocument());
 
         }
         public void NewDocument()
