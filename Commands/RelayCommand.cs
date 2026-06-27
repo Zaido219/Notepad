@@ -1,7 +1,9 @@
 using System;
 using System.Windows.Input;
 
-public class RelayCommand : ICommand
+namespace NotepadApp.Commands
+{
+    public class RelayCommand : ICommand
 {
     private readonly Action<object> _execute;
     private readonly Func<object, bool> _canExecute;
@@ -28,4 +30,5 @@ public class RelayCommand : ICommand
         add => CommandManager.RequerySuggested += value;
         remove => CommandManager.RequerySuggested -= value;
     }
+}
 }

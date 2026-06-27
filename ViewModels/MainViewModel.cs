@@ -1,10 +1,14 @@
 using System.IO;
 using System.Windows.Input;
+using NotepadApp.Services;
+using Microsoft.Win32;
+using NotepadApp.Commands;
 
 namespace NotepadApp.ViewModels
 {
     public class MainViewModel : BaseViewModel, IMainViewModel
     {
+        private readonly IFileService _fileService;
         private string _documentText = "";
         public string _filePath { get; set; }
         // tracks if file is currently being edited
@@ -49,8 +53,9 @@ namespace NotepadApp.ViewModels
             }
         }
         // constructor
-        public MainViewModel()
+        public MainViewModel(IFileService fileService)
         {
+            _fileService = fileService ?? throw new System.ArgumentNullException(nameof(fileService));
             // bind the actions directly in the constructor
             NewDocumentCommand = new RelayCommand(_ => NewDocument(),
             _ => !string.IsNullOrEmpty(DocumentText)
@@ -67,7 +72,24 @@ namespace NotepadApp.ViewModels
         }
         public void OpenDocument()
         {
-            //calls file service
+            // create the OS Dialog box
+            OpenFileDialog openFileDialog = new OpenFileDialog
+            {
+               Filter = "Text files (*.txt)|*.txt|All files (*.*)|*.*",
+                Title = "Open Text Document"
+            };
+            // present the dialog the user via the OS
+            if(openFileDialog.ShowDialog() == true)
+            {
+                // capture the selected path
+                string selectedPath = openFileDialog.FileName;
+                // delegate the disk reading operation to the service layer
+                string fileContent = _fileService.LoadTextFromFile(selectedPath);
+                // update state
+                DocumentText = fileContent;
+                FilePath = selectedPath;
+                IsDirty = false; // reset tracking since it matches disk perfectly
+            }
         }
         public void SaveDocument()
         {

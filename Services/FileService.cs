@@ -1,8 +1,8 @@
-using System.IO
+using System.IO;
 
-namespace NotepadApp.Services
+namespace  NotepadApp.Services
 {
-    public class FileService : IFileService
+     public class FileService : IFileService
     {
         public string LoadTextFromFile(string filePath)
         {
@@ -12,7 +12,7 @@ namespace NotepadApp.Services
         public void SaveTextFromFile(string filePath, string text)
         {
             // direct call to the os's file stream reader
-            return File.WriteAllText(filePath, text);
+            File.WriteAllText(filePath, text);
         }
-    }
+    };
 }
