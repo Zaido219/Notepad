@@ -13,6 +13,7 @@ namespace NotepadApp.ViewModels
         public string? _filePath { get; set; }
         // tracks if file is currently being edited
         public bool _isDirty { get; set; }
+        public string? _windowTitle {get; set;}
         public ICommand NewDocumentCommand { get; set; }
         public ICommand OpenDocumentCommand { get; set; }
         public ICommand SaveDocumentCommand {get; set;}
@@ -40,6 +41,7 @@ namespace NotepadApp.ViewModels
                 {
                     _filePath = value;
                     OnPropertyChanged();
+                    OnPropertyChanged(nameof(WindowTitle)); // forces xaml to changed the title too
                 }
             }
         }
@@ -51,6 +53,27 @@ namespace NotepadApp.ViewModels
                 if (_isDirty != value)
                 {
                     _isDirty = value;
+                    OnPropertyChanged();
+                    OnPropertyChanged(nameof(WindowTitle)); // forces xaml to changed the title too
+                }
+            }
+        }
+        public string WindowTitle
+        {
+            // let the view model automatically compute the correct string whenever xaml reads it
+            get
+            {
+                string fileName = string.IsNullOrEmpty(FilePath) ? "Untitled" : System.IO.Path.GetFileName(FilePath);
+                // determine the modification indicator
+                string dirtyIndicator = IsDirty ? " *" : "";
+                // combine into the final presentation output
+                return $"{fileName}{dirtyIndicator} - Notepad Clone";
+            }
+            set
+            {
+                if(_windowTitle != value)
+                {
+                    _windowTitle = value;
                     OnPropertyChanged();
                 }
             }
@@ -74,7 +97,6 @@ namespace NotepadApp.ViewModels
             DocumentText = "";
             FilePath = "";
             IsDirty = false;
-
         }
         public void OpenDocument()
         {
