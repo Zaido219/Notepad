@@ -14,7 +14,9 @@ namespace NotepadApp.ViewModels
         // tracks if file is currently being edited
         public bool _isDirty { get; set; }
         public ICommand NewDocumentCommand { get; set; }
-        public ICommand OpenDocumentCommand {get; set;}
+        public ICommand OpenDocumentCommand { get; set; }
+        public ICommand SaveDocumentCommand {get; set;}
+        public ICommand SaveDocumentAsCommand {get; set;}
 
         public string DocumentText
         {
@@ -62,6 +64,8 @@ namespace NotepadApp.ViewModels
             _ => !string.IsNullOrEmpty(DocumentText)
             );
             OpenDocumentCommand = new RelayCommand(_ => OpenDocument());
+            SaveDocumentCommand = new RelayCommand(_ => SaveDocument());
+            SaveDocumentAsCommand = new RelayCommand(_ => SaveDocumentAs());
 
         }
         public void NewDocument()
@@ -77,11 +81,11 @@ namespace NotepadApp.ViewModels
             // create the OS Dialog box
             OpenFileDialog openFileDialog = new OpenFileDialog
             {
-               Filter = "Text files (*.txt)|*.txt|All files (*.*)|*.*",
+                Filter = "Text files (*.txt)|*.txt|All files (*.*)|*.*",
                 Title = "Open Text Document"
             };
             // present the dialog the user via the OS
-            if(openFileDialog.ShowDialog() == true)
+            if (openFileDialog.ShowDialog() == true)
             {
                 // capture the selected path
                 string selectedPath = openFileDialog.FileName;
@@ -95,11 +99,38 @@ namespace NotepadApp.ViewModels
         }
         public void SaveDocument()
         {
-            // calls file service
+            // check if file path is empty
+            if (!string.IsNullOrEmpty(FilePath))
+            {
+                //directly save the document
+                _fileService.SaveTextFromFile(FilePath, DocumentText);
+                // reset state varibles
+                IsDirty = false;
+            }
+            else
+            {
+                SaveDocumentAs();
+            }
         }
         public void SaveDocumentAs()
         {
-            // calls file service
+            // open system dialog
+            SaveFileDialog saveFileDialog = new SaveFileDialog()
+            {
+                Filter = "Text files (*.txt)|*.txt|All files (*.*)|*.*",
+                DefaultExt = "txt"
+            };
+
+            if (saveFileDialog.ShowDialog() == true)
+            {
+                string filePath = saveFileDialog.FileName;
+                string fileContent = DocumentText;
+                // delegate work to the file service
+                _fileService.SaveTextFromFile(filePath, fileContent);
+                // update state variables
+                FilePath = filePath;
+                IsDirty = false;
+            }
         }
     }
 }

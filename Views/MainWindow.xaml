@@ -14,7 +14,7 @@
         <Menu Background="White" DockPanel.Dock="Top">
             <MenuItem Header="_File">
                 <MenuItem Header="_New" Command="{Binding NewDocumentCommand}"/>
-                <MenuItem Header="_Open..." Command="{Binding }"/>
+                <MenuItem Header="_Open..." Command="{Binding OpenDocumentCommand}"/>
                 <MenuItem Header="_Save" />
                 <MenuItem Header="Save _As..." />
                 <Separator />
