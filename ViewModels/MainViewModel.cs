@@ -11,9 +11,9 @@ namespace NotepadApp.ViewModels
     {
         private readonly IFileService _fileService;
         private string _documentText = "";
-        public string? _filePath { get; set; }
+        private string? _filePath { get; set; }
         // tracks if file is currently being edited
-        public bool _isDirty { get; set; }
+        public bool _isDirty;
         public string? _windowTitle {get; set;}
         public ICommand NewDocumentCommand { get; set; }
         public ICommand OpenDocumentCommand { get; set; }
