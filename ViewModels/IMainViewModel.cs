@@ -15,5 +15,6 @@ namespace NotepadApp.ViewModels
         void OpenDocument();
         void SaveDocument();
         void SaveDocumentAs();
+        void Exit();
     }
 }

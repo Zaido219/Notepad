@@ -3,6 +3,7 @@ using System.Windows.Input;
 using NotepadApp.Services;
 using Microsoft.Win32;
 using NotepadApp.Commands;
+using System.Windows;
 
 namespace NotepadApp.ViewModels
 {
@@ -18,6 +19,7 @@ namespace NotepadApp.ViewModels
         public ICommand OpenDocumentCommand { get; set; }
         public ICommand SaveDocumentCommand {get; set;}
         public ICommand SaveDocumentAsCommand {get; set;}
+        public ICommand ExitCommand {get; set;}
 
         public string DocumentText
         {
@@ -89,6 +91,7 @@ namespace NotepadApp.ViewModels
             OpenDocumentCommand = new RelayCommand(_ => OpenDocument());
             SaveDocumentCommand = new RelayCommand(_ => SaveDocument());
             SaveDocumentAsCommand = new RelayCommand(_ => SaveDocumentAs());
+            ExitCommand = new RelayCommand(_ => Exit());
 
         }
         public void NewDocument()
@@ -96,7 +99,7 @@ namespace NotepadApp.ViewModels
             // can be executed by itself no need to call file service
             DocumentText = "";
             FilePath = "";
-            IsDirty = false;
+            IsDirty = true;
         }
         public void OpenDocument()
         {
@@ -153,6 +156,11 @@ namespace NotepadApp.ViewModels
                 FilePath = filePath;
                 IsDirty = false;
             }
+        }
+        public void Exit()
+        {
+            // exit the applicaiton
+            Application.Current.Shutdown();
         }
     }
 }

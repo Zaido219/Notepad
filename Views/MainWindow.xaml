@@ -17,7 +17,7 @@
                 <MenuItem Header="_Open..." Command="{Binding OpenDocumentCommand}"/>
                 <MenuItem Header="_Save" Command="{Binding SaveDocumentCommand}"/>
                 <MenuItem Header="Save _As..." Command="{Binding SaveDocumentAsCommand}"/>
-                <MenuItem Header="E_xit" />
+                <MenuItem Header="E_xit" Command="{Binding ExitCommand}"/>
         </Menu>
 
         <StatusBar Background="#F3F3F3" DockPanel.Dock="Bottom">
