@@ -5,21 +5,18 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:local="clr-namespace:NotepadApp.Views"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    Title="Notepad App"
+    Title="Notepad Clone"
     Width="800"
     Height="450"
     mc:Ignorable="d">
 
     <DockPanel LastChildFill="True">
         <Menu Background="White" DockPanel.Dock="Top">
-            <MenuItem Header="_File">
                 <MenuItem Header="_New" Command="{Binding NewDocumentCommand}"/>
                 <MenuItem Header="_Open..." Command="{Binding OpenDocumentCommand}"/>
-                <MenuItem Header="_Save" />
-                <MenuItem Header="Save _As..." />
-                <Separator />
+                <MenuItem Header="_Save" Command="{Binding SaveDocumentCommand}"/>
+                <MenuItem Header="Save _As..." Command="{Binding SaveDocumentAsCommand}"/>
                 <MenuItem Header="E_xit" />
-            </MenuItem>
         </Menu>
 
         <StatusBar Background="#F3F3F3" DockPanel.Dock="Bottom">
