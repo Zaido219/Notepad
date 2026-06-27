@@ -1,4 +1,6 @@
 📁 C:\Users\io\Softwares\Notepad\
+|__ 📁Assets/                 <-- Assets folder
+|    └── 📄 app-icon.png 
 │
 ├── 📁 Views/                 <-- PRESENTATION LAYER
 │   └── 📄 MainWindow.xaml       (Move the default MainWindow here)
