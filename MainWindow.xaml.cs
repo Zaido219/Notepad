@@ -12,13 +12,5 @@ namespace NotepadApp.Views
         {
             InitializeComponent(); // This will work now!
         }
-
-        private void NewMenu_Click(object sender, RoutedEventArgs e)
-        {
-            if (DataContext is IMainViewModel viewModel)
-            {
-                viewModel.NewDocument();
-            }
-        }
     }
 } // Make sure this closing brace is at the very end of your file

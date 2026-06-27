@@ -1,4 +1,5 @@
 using System.IO;
+using System.Windows.Input;
 
 namespace NotepadApp.ViewModels
 {
@@ -8,6 +9,8 @@ namespace NotepadApp.ViewModels
         public string _filePath { get; set; }
         // tracks if file is currently being edited
         public bool _isDirty  {get; set;}
+        public ICommand NewDocumentCommand {get; set;}
+
         public string DocumentText
         {
             get => _documentText;
@@ -44,6 +47,13 @@ namespace NotepadApp.ViewModels
                     OnPropertyChanged();
                 }
             }
+        }
+        // constructor
+        public MainViewModel()
+        {
+            // bind the actions directly in the constructor
+            NewDocumentCommand = new RelayCommand(_ => NewDocument());
+
         }
         public void NewDocument()
         {
