@@ -8,15 +8,15 @@ namespace NotepadApp.ViewModels
         private string _documentText = "";
         public string _filePath { get; set; }
         // tracks if file is currently being edited
-        public bool _isDirty  {get; set;}
-        public ICommand NewDocumentCommand {get; set;}
+        public bool _isDirty { get; set; }
+        public ICommand NewDocumentCommand { get; set; }
 
         public string DocumentText
         {
             get => _documentText;
             set
             {
-                if(_documentText != value)
+                if (_documentText != value)
                 {
                     _documentText = value;
                     OnPropertyChanged();
@@ -29,7 +29,7 @@ namespace NotepadApp.ViewModels
             get => _filePath;
             set
             {
-                if(_filePath != value)
+                if (_filePath != value)
                 {
                     _filePath = value;
                     OnPropertyChanged();
@@ -41,7 +41,7 @@ namespace NotepadApp.ViewModels
             get => _isDirty;
             set
             {
-                if(_isDirty != value)
+                if (_isDirty != value)
                 {
                     _isDirty = value;
                     OnPropertyChanged();
@@ -52,7 +52,9 @@ namespace NotepadApp.ViewModels
         public MainViewModel()
         {
             // bind the actions directly in the constructor
-            NewDocumentCommand = new RelayCommand(_ => NewDocument());
+            NewDocumentCommand = new RelayCommand(_ => NewDocument(),
+            _ => !string.IsNullOrEmpty(DocumentText)
+            );
 
         }
         public void NewDocument()
