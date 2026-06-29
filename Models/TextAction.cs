@@ -4,13 +4,13 @@ namespace NotepadApp.Models
     {
         public string Text {get;init;}
         public int StartIndex {get;set;}
-        public string OperationType {get;init;}
+        public SupportedOperations OperationType {get;init;}
         // construction
-        public  TextAction(string t, int i, string o)
+        public  TextAction(string t, int i, SupportedOperations op)
         {
             Text =t;
             StartIndex = i;
-            OperationType = o;
+            OperationType = op;
         }
     }
 }
