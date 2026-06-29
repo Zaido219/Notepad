@@ -12,7 +12,12 @@ namespace NotepadApp.Services
         {
             ArgumentOutOfRangeException.ThrowIfGreaterThan(caretIndex, buffer.Length); // if careIndex > bufferLength.
             ArgumentOutOfRangeException.ThrowIfNegative(caretIndex); // if caretIndex is negative
-
+            // If this is the first character of a new word, lock in its 
+            // starting position in the document before the buffer grows.
+            if (isEmpty)
+            {
+                startIndex = caretIndex;
+            }
             buffer.Insert(caretIndex,c); //buffer.Insert can already handle if insert index is 0
         }
         public void Clear()
