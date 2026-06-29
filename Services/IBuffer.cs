@@ -7,7 +7,7 @@ namespace NotepadApp.Services
         string currentText {get;}
         int startIndex {get;}
         bool isEmpty {get;}
-        StringBuilder buffer {get;set;}
+        StringBuilder buffer {get;}
         void Append(char c, int caretIndex);
         void Clear();
     }
