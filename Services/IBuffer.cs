@@ -4,11 +4,11 @@ namespace NotepadApp.Services
 {
     public interface IBuffer
     {
-        string currentText {get;}
-        int startIndex {get;}
-        bool isEmpty {get;}
+        string currentText {get;} // the full constructed word
+        int startIndex {get;} // current caret index
+        bool isEmpty {get;} // check if buffer has any chars
         StringBuilder buffer {get;}
-        void Append(char c, int caretIndex);
-        void Clear();
+        void Append(char c, int caretIndex); // appends character to buffer
+        void Clear(); // clears buffer for next append operations
     }
 }
