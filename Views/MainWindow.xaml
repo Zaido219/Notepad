@@ -12,20 +12,59 @@
     Icon="../Assets/app-icon.png">
 
     <DockPanel LastChildFill="True">
-        <Menu Background="White" DockPanel.Dock="Top">
-                <MenuItem Header="_New" Command="{Binding NewDocumentCommand}"/>
-                <MenuItem Header="_Open..." Command="{Binding OpenDocumentCommand}"/>
-                <MenuItem Header="_Save" Command="{Binding SaveDocumentCommand}"/>
-                <MenuItem Header="Save _As..." Command="{Binding SaveDocumentAsCommand}"/>
-                <MenuItem Header="E_xit" Command="{Binding ExitCommand}"/>
+        <Menu Background="White"
+                DockPanel.Dock="Top">
+            <MenuItem Header="File">
+                <MenuItem Header="_New"
+                        Command="{Binding NewDocumentCommand}"/>
+                <MenuItem Header="_Open..."
+                        Command="{Binding OpenDocumentCommand}"/>
+                <MenuItem Header="_Save"
+                        Command="{Binding SaveDocumentCommand}"/>
+                <MenuItem Header="Save _As..."
+                        Command="{Binding SaveDocumentAsCommand}"/>
+                <MenuItem Header="E_xit"
+                        Command="{Binding ExitCommand}"/>
+            </MenuItem>
+            <MenuItem Header="Edit">
+                <MenuItem Header="Undo"></MenuItem>
+                <MenuItem Header="Cut"></MenuItem>
+                <MenuItem Header="Copy"></MenuItem>
+                <MenuItem Header="Undo"></MenuItem>
+                <MenuItem Header="Paste"></MenuItem>
+                <MenuItem Header="Delete"></MenuItem>
+                <MenuItem Header="Search on Web"></MenuItem>
+                <MenuItem Header="Undo"></MenuItem>
+                <MenuItem Header="Find"></MenuItem>
+                <MenuItem Header="Find Next"></MenuItem>
+                <MenuItem Header="Find Previous"></MenuItem>
+                <MenuItem Header="Replace"></MenuItem>
+                <MenuItem Header="Go To"></MenuItem>
+                <MenuItem Header="Select All"></MenuItem>
+                <MenuItem Header="Time Date"></MenuItem>
+            </MenuItem>
+            <MenuItem Header="Format">
+                <MenuItem Header="Word wrap"></MenuItem>
+                <MenuItem Header="Font"></MenuItem>
+            </MenuItem>
+            <MenuItem Header="View">
+                <MenuItem Header="Zoom"></MenuItem>
+                <MenuItem Header="Status Bar"></MenuItem>
+            </MenuItem>
+            <MenuItem Header="Help">
+                <MenuItem Header="View Help"></MenuItem>
+                <MenuItem Header="Send Feedback"></MenuItem>
+                <MenuItem Header="About Notepad-Clone"></MenuItem>
+            </MenuItem>
         </Menu>
 
-        <StatusBar Background="#F3F3F3" DockPanel.Dock="Bottom">
+        <StatusBar Background="#F3F3F3"
+                DockPanel.Dock="Bottom">
             <StatusBarItem>
                 <TextBlock
                     FontSize="11"
                     Foreground="#555555"
-                    Text="Ln 1, Col 1" />
+                    Text="Ln 1, Col 1"/>
             </StatusBarItem>
         </StatusBar>
 
@@ -39,6 +78,6 @@
             FontSize="14"
             HorizontalScrollBarVisibility="Auto"
             TextWrapping="Wrap"
-            VerticalScrollBarVisibility="Auto" />
+            VerticalScrollBarVisibility="Auto"/>
     </DockPanel>
 </Window>
