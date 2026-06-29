@@ -2,6 +2,7 @@ using System.Windows.Automation;
 using NotepadApp.Models;
 using NotepadApp.Services;
 using System.Collections.Generic;
+using System.Timers;
 namespace NotepadApp.Services
 {
     public class TransactionManager : ITransactionManager
@@ -10,6 +11,17 @@ namespace NotepadApp.Services
         const int MAX_LIMIT = 5;
         private readonly IBuffer _textBuffer = new TextBuffer();
         private LinkedList<ITextAction> UndoStack = new LinkedList<ITextAction>(); // this stack should be limited to 5 actions
+        private System.Timers.Timer _timer = new System.Timers.Timer(2000);
+        // constructor
+        public TransactionManager()
+        {
+            _timer.AutoReset = false;
+            _timer.Elapsed += OnTimerElapsed;
+        }
+        private void OnTimerElapsed(object sender, System.Timers.ElapsedEventArgs e)
+        {
+            Commit();
+        }
         public void HandleKeyStroke(char c, int currenCaretIndex)
         {
             if (c == ' ') // if space
@@ -19,7 +31,11 @@ namespace NotepadApp.Services
             else
             {
                 // add chars to text buffer
-                _textBuffer.Append(c, currenCaretIndex);   
+                _textBuffer.Append(c, currenCaretIndex);
+                // Debounce the idle timer: Stop the active countdown and restart it.
+                // This pushes the 2-second commit window forward with every single keystroke.
+                _timer.Stop();
+                _timer.Start();
             }
         }
         public void Commit()
