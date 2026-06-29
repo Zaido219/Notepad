@@ -7,16 +7,19 @@ namespace NotepadApp.Services
     public class TransactionManager : ITransactionManager
     {
         // inject dependencies
+        const int MAX_LIMIT = 5;
         private readonly IBuffer _textBuffer = new TextBuffer();
-        private Stack<ITextAction> UndoStack = new Stack<ITextAction>(); // this stack should be limited to 5 actions
+        private LinkedList<ITextAction> UndoStack = new LinkedList<ITextAction>(); // this stack should be limited to 5 actions
         public void HandleKeyStroke(char c, int currenCaretIndex)
         {
-            // add chars to text buffer
-            _textBuffer.Append(c, currenCaretIndex);
-
             if (c == ' ') // if space
             {
                 Commit();
+            }
+            else
+            {
+                // add chars to text buffer
+                _textBuffer.Append(c, currenCaretIndex);   
             }
         }
         public void Commit()
@@ -27,11 +30,25 @@ namespace NotepadApp.Services
             //create a new ITextAction
             ITextAction _textAction = new TextAction(currentText, currentCaretIndex, SupportedOperations.Insert);
             // push to stack
-            UndoStack.Push(_textAction);
+            UndoStack.AddFirst(_textAction);
+            CheckSpace(); // check the stack if its over the limit
+            // clear buffer
+            _textBuffer.Clear();
         }
         public void Undo()
         {
             // 
+        }
+
+        public void CheckSpace()
+        {
+            // checks if there are still allowable space on the stack
+            if(UndoStack.Count > MAX_LIMIT)
+            {
+                // remove oldest save
+                UndoStack.RemoveLast();
+
+            }
         }
     }
 }
