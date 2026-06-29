@@ -1,7 +1,12 @@
 📁 C:\Users\io\Softwares\Notepad\
 |__ 📁Assets/                 <-- Assets folder
 |    └── 📄 app-icon.png 
-│
+├── 📁Commands/
+|   └── 📄 RelayCommand.cs
+|
+├── 📁 Models/
+|   └── 📄 ITextAction.cs
+|   └── 📄 TextAction.cs
 ├── 📁 Views/                 <-- PRESENTATION LAYER
 │   └── 📄 MainWindow.xaml       (Move the default MainWindow here)
 │
@@ -12,6 +17,10 @@
 ├── 📁 Services/              <-- SERVICE LAYER (Infrastructure)
 │   ├── 📄 IFileService.cs       (The contract/interface for file operations)
 │   └── 📄 FileService.cs        (The concrete worker handling disk I/O & exceptions)
+│   └── 📄 IBuffer.cs
+│   └── 📄 ITransactionManager.cs
+│   └── 📄 TextBuffer.cs
+│   └── 📄 TransactionManager.cs
 │
 ├── 📁 Commands/              <-- INFRASTRUCTURE/UTILITIES
 │   └── 📄 RelayCommand.cs       (A reusable glue class to route UI clicks to ViewModel methods)

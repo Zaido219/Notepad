@@ -12,6 +12,7 @@ namespace NotepadApp.ViewModels
         bool IsDirty { get; set; }
         // the structural actions (Commands) that the top Menu items will bind to
         void NewDocument();
+        void Undo();
         void OpenDocument();
         void SaveDocument();
         void SaveDocumentAs();

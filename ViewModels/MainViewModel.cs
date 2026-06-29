@@ -162,5 +162,11 @@ namespace NotepadApp.ViewModels
             // exit the applicaiton
             Application.Current.Shutdown();
         }
+        public void Undo()
+        {
+            // undo just reset the text and is dirty but doenst change the filePath
+            DocumentText = "";
+            IsDirty = true;
+        }
     }
 }
