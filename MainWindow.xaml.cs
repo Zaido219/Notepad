@@ -3,14 +3,11 @@ using NotepadApp.ViewModels;
 
 namespace NotepadApp.Views
 {
-    /// <summary>
-    /// Interaction logic for MainWindow.xaml
-    /// </summary>
     public partial class MainWindow : Window
     {
         public MainWindow()
         {
-            InitializeComponent(); // This will work now!
+            InitializeComponent();
         }
     }
-} // Make sure this closing brace is at the very end of your file
+}
