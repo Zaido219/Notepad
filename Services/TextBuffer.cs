@@ -7,6 +7,7 @@ namespace NotepadApp.Services
         public string currentText => buffer.ToString(); // auto-calculate currentText by converting buffer to string
         public bool isEmpty => buffer.Length == 0; // auto-calculate is empty via buffer length
         public int startIndex { get; set; }
+        public int Length => buffer.Length;
         public StringBuilder buffer { get; } = new StringBuilder(1024);
         public void Append(char c, int caretIndex)
         {

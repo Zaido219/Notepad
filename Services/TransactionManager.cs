@@ -25,6 +25,14 @@ namespace NotepadApp.Services
         }
         public void HandleKeyStroke(char c, int currenCaretIndex)
         {
+            int expectedIndex = _textBuffer.startIndex + _textBuffer.Length;
+            if(!_textBuffer.isEmpty && currenCaretIndex != expectedIndex)
+            {
+                // caret disconnect check, it may jump to all places
+                // its not always sequentially forward
+                Commit(); // securely save the old word to the UndoStack before wipin it
+
+            }
             if (c == ' ') // if space
             {
                 Commit();
