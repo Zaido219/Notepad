@@ -86,9 +86,10 @@ namespace NotepadApp.ViewModels
             }
         }
         // constructor
-        public MainViewModel(IFileService fileService)
+        public MainViewModel(IFileService fileService, ITransactionManager transactionManager)
         {
             _fileService = fileService ?? throw new System.ArgumentNullException(nameof(fileService));
+            _transactionManager = transactionManager ?? throw new System.ArgumentNullException(nameof(transactionManager));
             // bind the actions directly in the constructor
             NewDocumentCommand = new RelayCommand(_ => NewDocument(),
             _ => !string.IsNullOrEmpty(DocumentText)

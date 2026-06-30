@@ -15,7 +15,8 @@ namespace NotepadApp
             // create the layers
             MainWindow window = new MainWindow();
             IFileService fileService = new FileService();
-            IMainViewModel viewModel = new MainViewModel(fileService);
+            ITransactionManager transactionManager= new TransactionManager();
+            IMainViewModel viewModel = new MainViewModel(fileService, transactionManager);
             // hand the view model to the view
             window.DataContext = viewModel;
             // display the ui

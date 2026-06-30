@@ -19,12 +19,14 @@ namespace NotepadApp.Services
                 startIndex = caretIndex;
             }
             buffer.Insert(caretIndex,c); //buffer.Insert can already handle if insert index is 0
+            Console.WriteLine($"Buffer insert: {buffer.ToString()}");
         }
         public void Clear()
         {
             // clear the buffer
             buffer.Clear();
             startIndex = 0; // reset startIndex
+            Console.WriteLine("Buffer was cleared");
         }
 
     }
