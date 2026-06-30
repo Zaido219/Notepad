@@ -27,7 +27,7 @@
                         Command="{Binding ExitCommand}"/>
             </MenuItem>
             <MenuItem Header="Edit">
-                <MenuItem Header="Undo"></MenuItem>
+                <MenuItem Header="Undo" Command="{Binding UndoCommand}"></MenuItem>
                 <MenuItem Header="Cut"></MenuItem>
                 <MenuItem Header="Copy"></MenuItem>
                 <MenuItem Header="Undo"></MenuItem>

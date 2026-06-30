@@ -171,6 +171,7 @@ namespace NotepadApp.ViewModels
         }
         public void Undo()
         {
+            Console.WriteLine("Something is hapeening");
             // undo is handled by transaction manager
             ITextAction? textAction = _transactionManager.Undo();
             if(textAction != null)
