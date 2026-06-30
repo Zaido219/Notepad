@@ -11,15 +11,16 @@ namespace NotepadApp.Services
         const int MAX_LIMIT = 5;
         private readonly IBuffer _textBuffer = new TextBuffer();
         private LinkedList<ITextAction> UndoStack = new LinkedList<ITextAction>(); // this stack should be limited to 5 actions
-        private System.Timers.Timer _timer = new System.Timers.Timer(2000);
+        private System.Windows.Threading.DispatcherTimer _timer = new System.Windows.Threading.DispatcherTimer();
         // constructor
         public TransactionManager()
         {
-            _timer.AutoReset = false;
-            _timer.Elapsed += OnTimerElapsed;
+            _timer.Interval = TimeSpan.FromSeconds(2);
+            _timer.Tick += OnTimerElapsed;
         }
-        private void OnTimerElapsed(object sender, System.Timers.ElapsedEventArgs e)
+        private void OnTimerElapsed(object? sender, System.EventArgs e)
         {
+            _timer.Stop();
             Commit();
         }
         public void HandleKeyStroke(char c, int currenCaretIndex)
@@ -27,19 +28,20 @@ namespace NotepadApp.Services
             if (c == ' ') // if space
             {
                 Commit();
+                Console.WriteLine("Space was detected a word was commited");
             }
             else
             {
                 // add chars to text buffer
                 _textBuffer.Append(c, currenCaretIndex);
+                Console.WriteLine("A new char is added to the buffer");
                 // Debounce the idle timer: Stop the active countdown and restart it.
                 // This pushes the 2-second commit window forward with every single keystroke.
                 _timer.Stop();
                 _timer.Start();
             }
         }
-        public void Commit()
-        {
+        public void Commit(){
             //extract current text and start index from the buffer
             string currentText = _textBuffer.currentText;
             int currentCaretIndex = _textBuffer.startIndex;
@@ -47,6 +49,7 @@ namespace NotepadApp.Services
             ITextAction _textAction = new TextAction(currentText, currentCaretIndex, SupportedOperations.Insert);
             // push to stack
             UndoStack.AddFirst(_textAction);
+            Console.WriteLine("New textaction was pushed to the UndoStack");
             CheckSpace(); // check the stack if its over the limit
             // clear buffer
             _textBuffer.Clear();

@@ -79,6 +79,7 @@
             HorizontalScrollBarVisibility="Auto"
             TextWrapping="Wrap"
             VerticalScrollBarVisibility="Auto"
-            PreviewTextInput="TextBox_PreviewTextInput"/>
+            PreviewTextInput="TextBox_PreviewTextInput"
+            PreviewKeyDown="TextBox_PreviewKeyDown"/>
     </DockPanel>
 </Window>

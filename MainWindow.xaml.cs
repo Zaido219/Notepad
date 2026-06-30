@@ -28,5 +28,14 @@ namespace NotepadApp.Views
                 }
             }
         }
+        private void TextBox_PreviewKeyDown(object sender, KeyEventArgs e){
+            if(e.Key == Key.Space && sender is TextBox textBox)
+            {
+                if(this.DataContext is MainViewModel viewModel)
+                {
+                    viewModel.ProcessKeyPress(' ', textBox.CaretIndex);
+                }
+            }
+        }
     }
 }

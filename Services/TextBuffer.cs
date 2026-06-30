@@ -6,19 +6,28 @@ namespace NotepadApp.Services
     {
         public string currentText => buffer.ToString(); // auto-calculate currentText by converting buffer to string
         public bool isEmpty => buffer.Length == 0; // auto-calculate is empty via buffer length
-        public int startIndex {get; set; }
-        public StringBuilder buffer {get;} = new StringBuilder(1024);
+        public int startIndex { get; set; }
+        public StringBuilder buffer { get; } = new StringBuilder(1024);
         public void Append(char c, int caretIndex)
         {
-            ArgumentOutOfRangeException.ThrowIfGreaterThan(caretIndex, buffer.Length); // if careIndex > bufferLength.
-            ArgumentOutOfRangeException.ThrowIfNegative(caretIndex); // if caretIndex is negative
-            // If this is the first character of a new word, lock in its 
-            // starting position in the document before the buffer grows.
+            // STEP 1: Set the start line FIRST if the buffer was just cleared
             if (isEmpty)
             {
                 startIndex = caretIndex;
             }
-            buffer.Insert(caretIndex,c); //buffer.Insert can already handle if insert index is 0
+
+            // STEP 2: Calculate the local position
+            int localIndex = caretIndex - startIndex;
+
+            // STEP 3: Safety checks (Guard Clauses) using the local position
+            if (localIndex < 0 || localIndex > buffer.Length)
+            {
+                throw new ArgumentOutOfRangeException(nameof(caretIndex), "Index is out of bounds!");
+            }
+
+            // STEP 4: Insert the character into the buffer
+            buffer.Insert(localIndex, c);
+
             Console.WriteLine($"Buffer insert: {buffer.ToString()}");
         }
         public void Clear()
