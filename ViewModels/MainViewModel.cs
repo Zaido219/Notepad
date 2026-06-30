@@ -180,5 +180,9 @@ namespace NotepadApp.ViewModels
                 DocumentText = textAction.Text;
             }
         }
+        public void ProcessKeyPress(char c, int caretIndex)
+        {
+            _transactionManager.HandleKeyStroke(c, caretIndex);
+        }
     }
 }

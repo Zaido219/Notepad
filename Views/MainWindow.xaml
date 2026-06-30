@@ -78,6 +78,7 @@
             FontSize="14"
             HorizontalScrollBarVisibility="Auto"
             TextWrapping="Wrap"
-            VerticalScrollBarVisibility="Auto"/>
+            VerticalScrollBarVisibility="Auto"
+            PreviewTextInput="TextBox_PreviewTextInput"/>
     </DockPanel>
 </Window>

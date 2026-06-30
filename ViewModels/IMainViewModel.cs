@@ -17,5 +17,6 @@ namespace NotepadApp.ViewModels
         void SaveDocument();
         void SaveDocumentAs();
         void Exit();
+        void ProcessKeyPress(char c, int caretIndex); // captures inputs
     }
 }
