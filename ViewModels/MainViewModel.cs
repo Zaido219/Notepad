@@ -4,22 +4,27 @@ using NotepadApp.Services;
 using Microsoft.Win32;
 using NotepadApp.Commands;
 using System.Windows;
+using NotepadApp.Models;
+
 
 namespace NotepadApp.ViewModels
 {
     public class MainViewModel : BaseViewModel, IMainViewModel
     {
         private readonly IFileService _fileService;
+        private readonly ITransactionManager _transactionManager;
         private string _documentText = "";
         private string? _filePath { get; set; }
         // tracks if file is currently being edited
         public bool _isDirty;
         public string? _windowTitle {get; set;}
+        public ITextAction _textAction;
         public ICommand NewDocumentCommand { get; set; }
         public ICommand OpenDocumentCommand { get; set; }
         public ICommand SaveDocumentCommand {get; set;}
         public ICommand SaveDocumentAsCommand {get; set;}
         public ICommand ExitCommand {get; set;}
+        public ICommand UndoCommand {get; set;}
 
         public string DocumentText
         {
@@ -92,6 +97,7 @@ namespace NotepadApp.ViewModels
             SaveDocumentCommand = new RelayCommand(_ => SaveDocument());
             SaveDocumentAsCommand = new RelayCommand(_ => SaveDocumentAs());
             ExitCommand = new RelayCommand(_ => Exit());
+            UndoCommand = new RelayCommand(_ => Undo());
 
         }
         public void NewDocument()
@@ -164,9 +170,13 @@ namespace NotepadApp.ViewModels
         }
         public void Undo()
         {
-            // undo just reset the text and is dirty but doenst change the filePath
-            DocumentText = "";
-            IsDirty = true;
+            // undo is handled by transaction manager
+            ITextAction? textAction = _transactionManager.Undo();
+            if(textAction != null)
+            {
+                //update UI
+                DocumentText = textAction.Text;
+            }
         }
     }
 }

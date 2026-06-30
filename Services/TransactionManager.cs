@@ -51,9 +51,18 @@ namespace NotepadApp.Services
             // clear buffer
             _textBuffer.Clear();
         }
-        public void Undo()
+        public ITextAction? Undo()
         {
-            // 
+            if (UndoStack.Count <= 0)
+            {
+                return null;
+            }
+            //read most recent action save
+            ITextAction lastAction = UndoStack.First();
+            // delete most recent action save
+            UndoStack.RemoveFirst();
+
+            return lastAction;
         }
 
         public void CheckSpace()

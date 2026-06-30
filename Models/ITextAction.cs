@@ -7,7 +7,7 @@ namespace NotepadApp.Models
     }
     public interface ITextAction
     {
-        string Text { get; init; } //TODO:Use enum for the operation type
+        string Text { get; init; }
         int StartIndex {get;}
         SupportedOperations OperationType {get; init;}
     }
