@@ -28,7 +28,7 @@
             </MenuItem>
             <MenuItem Header="Edit">
                 <MenuItem Header="Undo" Command="{Binding UndoCommand}"></MenuItem>
-                <MenuItem Header="Cut"></MenuItem>
+                <MenuItem Header="Cut" Command="ApplicationCommands.Cut" CommandTarget="{Binding ElementName=NotepadTextBox}"></MenuItem>
                 <MenuItem Header="Copy"></MenuItem>
                 <MenuItem Header="Undo"></MenuItem>
                 <MenuItem Header="Paste"></MenuItem>
@@ -80,6 +80,7 @@
             TextWrapping="Wrap"
             VerticalScrollBarVisibility="Auto"
             PreviewTextInput="TextBox_PreviewTextInput"
-            PreviewKeyDown="TextBox_PreviewKeyDown"/>
+            PreviewKeyDown="TextBox_PreviewKeyDown"
+            x:Name="NotepadTextBox"/>
     </DockPanel>
 </Window>

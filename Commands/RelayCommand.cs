@@ -23,8 +23,6 @@ namespace NotepadApp.Commands
     {
         _execute(parameter);
     }
-
-    // Hooks into WPF's central command manager to auto-query CanExecute state changes
     public event EventHandler? CanExecuteChanged
     {
         add => CommandManager.RequerySuggested += value;
