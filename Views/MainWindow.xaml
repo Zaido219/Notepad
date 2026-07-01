@@ -29,7 +29,7 @@
             <MenuItem Header="Edit">
                 <MenuItem Header="Undo" Command="{Binding UndoCommand}"></MenuItem>
                 <MenuItem Header="Cut" Command="ApplicationCommands.Cut" CommandTarget="{Binding ElementName=NotepadTextBox}"></MenuItem>
-                <MenuItem Header="Copy"></MenuItem>
+                <MenuItem Header="Copy" Command="ApplicationCommands.Copy" CommandTarget="{Binding ElementName=NotepadTextBox}"></MenuItem>
                 <MenuItem Header="Undo"></MenuItem>
                 <MenuItem Header="Paste"></MenuItem>
                 <MenuItem Header="Delete"></MenuItem>
